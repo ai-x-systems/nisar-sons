@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white text-charcoal font-body antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display;
+  }
+
+  ::selection {
+    @apply bg-brand/20 text-charcoal;
+  }
+
+  :focus-visible {
+    outline: 2px solid #1E6B45;
+    outline-offset: 3px;
+  }
+}
+
+@layer utilities {
+  .eyebrow {
+    @apply font-mono text-[11px] tracking-widest2 uppercase text-brand;
+  }
+
+  /* Corner-bracket registration marks — the page's signature device,
+     borrowed from technical drawing / spec-sheet crop marks. */
+  .bracket-frame {
+    position: relative;
+  }
+  .bracket-frame::before,
+  .bracket-frame::after,
+  .bracket-frame > .bf-tr,
+  .bracket-frame > .bf-bl {
+    content: "";
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-color: currentColor;
+    opacity: 0.55;
+    transition: opacity 0.25s ease, width 0.25s ease, height 0.25s ease;
+  }
+  .bracket-frame::before {
+    top: -1px;
+    left: -1px;
+    border-top: 2px solid;
+    border-left: 2px solid;
+  }
+  .bracket-frame::after {
+    bottom: -1px;
+    right: -1px;
+    border-bottom: 2px solid;
+    border-right: 2px solid;
+  }
+  .bracket-frame:hover::before,
+  .bracket-frame:hover::after {
+    opacity: 1;
+    width: 24px;
+    height: 24px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
