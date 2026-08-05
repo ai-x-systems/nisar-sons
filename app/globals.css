@@ -20,14 +20,18 @@
   }
 
   :focus-visible {
-    outline: 2px solid #1E6B45;
+    outline: 2px solid #21743D;
     outline-offset: 3px;
   }
 }
 
 @layer utilities {
+  /* text-brand-dark (not text-brand) — the logo's exact green only hits
+     3.2:1 contrast on white, which fails WCAG AA. The deeper variant hits
+     5.78:1. Sections on a dark background override this via the `light`
+     prop (text-brand-bright), which has ample contrast on charcoal. */
   .eyebrow {
-    @apply font-mono text-[11px] tracking-widest2 uppercase text-brand;
+    @apply font-mono text-[11px] tracking-widest2 uppercase text-brand-dark;
   }
 
   /* Corner-bracket registration marks — the page's signature device,
@@ -36,9 +40,7 @@
     position: relative;
   }
   .bracket-frame::before,
-  .bracket-frame::after,
-  .bracket-frame > .bf-tr,
-  .bracket-frame > .bf-bl {
+  .bracket-frame::after {
     content: "";
     position: absolute;
     width: 18px;
